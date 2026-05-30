@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: plant_disease_detection
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      # Pass the GDRIVE_FILE_ID environment variable to the container
+      # You can create a local .env file with GDRIVE_FILE_ID=your_id
+      - GDRIVE_FILE_ID=${GDRIVE_FILE_ID:-}
+    restart: unless-stopped
